@@ -5,12 +5,30 @@ require_once 'src/Titular.php';
 require_once 'src/Cpf.php';
 
 $primeiraConta= new Conta(new Titular(new Cpf('133.456.789-55'), 'Leticia Santos'));
-$primeiraConta->depositar(500);
-$primeiraConta->sacar(300);
+$segundaConta= new Conta(new Titular(new Cpf('456.987.258-65'), 'Camila Borges'));
+$terceiraConta= new Conta(new Titular(new Cpf('258.946.523-98'), 'Marilene Gonçalves'));
 
-echo $primeiraConta->getNomeTitular(). PHP_EOL;
-echo $primeiraConta->getSaldo() . PHP_EOL;
-echo $primeiraConta->getCpf()  . PHP_EOL;
+$primeiraConta->depositar(1000);
+$segundaConta-> depositar(200);
+$terceiraConta->depositar(800);
 
-$segundaConta= new Conta (new Titular(new Cpf('256.984.654-48'), 'Patricia'));
-echo Conta::getNumeroDeContas() . PHP_EOL;
+$terceiraConta->transferir(200,$primeiraConta);
+
+$segundaConta->sacar(200);
+
+$quartaConta= new Conta(new Titular(new Cpf('479.659.259-99'), 'Vanderleia Marta'));
+$quintaConta= new Conta(new Titular(new Cpf('159.687.618-63'), 'Aila Loures'));
+
+$quartaConta->depositar(500);
+$quintaConta->depositar(500);
+
+$quartaConta->transferir(100,$quintaConta);
+
+$quintaConta->sacar (400);
+echo $primeiraConta->getNomeTitular() . PHP_EOL . $primeiraConta->getSaldo() . PHP_EOL ;
+echo $segundaConta->getNomeTitular() . PHP_EOL .$segundaConta->getSaldo() . PHP_EOL;
+echo $terceiraConta->getNomeTitular() . PHP_EOL . $terceiraConta->getSaldo() .PHP_EOL;
+echo $quartaConta->getNomeTitular() . PHP_EOL . $quartaConta->getSaldo() .PHP_EOL;
+echo $quintaConta->getNomeTitular() . PHP_EOL . $quintaConta->getSaldo() . PHP_EOL;
+
+echo "Total de contas:" .Conta::getNumeroDeContas() . PHP_EOL;
